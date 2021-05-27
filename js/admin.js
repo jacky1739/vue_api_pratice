@@ -22,16 +22,9 @@ Vue.createApp({
                 console.log(this.products);
             })
         },
-        // renderList() {
-            
-        // },
-        openModal(){
-            console.log('click');
+        openModal(isNew){
             productModal.show();
         },
-        click() {
-            console.log('click');
-        }
     },
     mounted() {
         productModal = new bootstrap.Modal(document.getElementById('productModal'), {
@@ -46,6 +39,5 @@ Vue.createApp({
         axios.defaults.headers.common['Authorization'] = token;
         console.log(token);
         this.getData();
-        // this.openModal();
     }
 }).mount("#app")
