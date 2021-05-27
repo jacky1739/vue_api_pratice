@@ -28,7 +28,9 @@ Vue.createApp({
         openModal(){
             console.log('click');
             productModal.show();
-
+        },
+        click() {
+            console.log('click');
         }
     },
     mounted() {
