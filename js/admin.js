@@ -25,15 +25,33 @@ Vue.createApp({
             })
         },
         updateProduct(){
+            const api_path = 'jacky';
+            const base_url = 'https://vue3-course-api.hexschool.io/';
+
             let url = `${base_url}/${api_path}/admin/product`;
             let http = 'post';
 
             if(!this.isNew){
-                url = `${base_url}/${this.api_path}/admin/product/${this.tempProduct.id}`;
+                url = `${base_url}api/${api_path}/admin/product/${this.tempProduct.id}`;
                 http = 'put';
             }
 
-            console.log('click');
+            console.log(this.tempProduct);
+            axios[http](url,  { data: this.tempProduct })
+            .then((res) => {
+                if(res.data.success) {
+                    window.alert(res.data.message);
+                    productModal.hide();
+                    this.getData();
+                } else {
+                    window.alert(res.data.message);
+                }
+            })
+            .catch(err=>{
+                // console.dir(err);
+                const errMsg = err.response.data.message;
+                console.log(errMsg);
+            })
         },
         openModal(isNew, item){
             console.log(isNew, item);
