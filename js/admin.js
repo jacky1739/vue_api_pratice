@@ -4,10 +4,8 @@ let delProductModal = null;
 Vue.createApp({
     data(){
         return {
-            // apiInfo:{
-            //     api_path = 'jacky',
-            //     base_url = 'https://vue3-course-api.hexschool.io/'
-            // },
+            // api_path = 'jacky',
+            // base_url = 'https://vue3-course-api.hexschool.io/',
             products: [],
             isNew: false,  //是否是新的 
             tempProduct: {

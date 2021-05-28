@@ -130,13 +130,13 @@
 
                   <div class="row">
                     <div class="form-group col-md-6">
-                      <label for="origin_price" v-model.number="tempProduct.origin_price">原價</label>
+                      <label for="origin_price">原價</label>
                       <input id="origin_price" type="number" min="0" class="form-control" v-model.number="tempProduct.origin_price" placeholder="請輸入原價">
                     </div>
                     <div class="form-group col-md-6">
-                      <label for="price" v-model.number="tempProduct.price">售價</label>
+                      <label for="price">售價</label>
                       <input id="price" type="number" min="0" class="form-control"
-                            placeholder="請輸入售價">
+                            placeholder="請輸入售價" v-model.number="tempProduct.price">
                     </div>
                   </div>
                   <hr>
