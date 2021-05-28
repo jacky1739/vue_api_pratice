@@ -4,8 +4,12 @@ let delProductModal = null;
 Vue.createApp({
     data(){
         return {
+            // apiInfo:{
+            //     api_path = 'jacky',
+            //     base_url = 'https://vue3-course-api.hexschool.io/'
+            // },
             products: [],
-            isNew: false,
+            isNew: false,  //是否是新的 
             tempProduct: {
                 imagesUrl: [],
             }
@@ -14,16 +18,46 @@ Vue.createApp({
     methods: {
         getData(){
             const api_path = 'jacky';
-            const url = 'https://vue3-course-api.hexschool.io/';
+            const base_url = 'https://vue3-course-api.hexschool.io/';
 
-            axios.get(`${url}api/${api_path}/admin/products`).then((res) => {
+            axios.get(`${base_url}api/${api_path}/admin/products`).then((res) => {
                 console.log(res);
                 this.products = res.data.products;
                 console.log(this.products);
             })
         },
-        openModal(isNew){
-            productModal.show();
+        updateProduct(){
+            let url = `${base_url}/${api_path}/admin/product`;
+            let http = 'post';
+
+            if(!this.isNew){
+                url = `${base_url}/${this.api_path}/admin/product/${this.tempProduct.id}`;
+                http = 'put';
+            }
+
+            console.log('click');
+        },
+        openModal(isNew, item){
+            console.log(isNew, item);
+            switch(isNew) {
+                case 'new':
+                    this.tempProduct = {
+                        imagesUrl: [],
+                    };
+                    this.isNew = true;
+                    productModal.show();
+                    break;
+                case 'edit':
+                    this.tempProduct = {...item};
+                    this.isNew = false;
+                    productModal.show();
+                    break;
+                case 'delete':
+                    this.tempProduct = {...item};
+                    this.isNew = false;
+                    delProductModal.show();
+                    break;
+            }
         },
     },
     mounted() {
