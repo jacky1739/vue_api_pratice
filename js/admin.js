@@ -28,7 +28,7 @@ Vue.createApp({
             const api_path = 'jacky';
             const base_url = 'https://vue3-course-api.hexschool.io/';
 
-            let url = `${base_url}/${api_path}/admin/product`;
+            let url = `${base_url}api/${api_path}/admin/product`;
             let http = 'post';
 
             if(!this.isNew){
@@ -75,6 +75,22 @@ Vue.createApp({
                     break;
             }
         },
+        deleteItem(){
+            console.log('click');
+            const api_path = 'jacky';
+            const base_url = 'https://vue3-course-api.hexschool.io/';
+
+            axios.delete(`${base_url}api/${api_path}/admin/product/${this.tempProduct.id}`).then((res) => {
+                console.log(res);
+                if(res.data.success){
+                    alert(res.data.message);
+                    delProductModal.hide();
+                    this.getData();
+                } else {
+                    alert(res.data.message);
+                }
+            })
+        }
     },
     mounted() {
         productModal = new bootstrap.Modal(document.getElementById('productModal'), {
