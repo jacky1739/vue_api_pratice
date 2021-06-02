@@ -16,7 +16,7 @@
               請先登入
             </h1>
             <div class="col-8">
-              <form id="form" class="form-signin">
+              <form id="form" class="form-signin" @click.prevent="signin">
                 <div class="form-floating mb-3">
                   <input type="email" class="form-control" id="username"
                     placeholder="name@example.com" required autofocus>
@@ -27,7 +27,7 @@
                     placeholder="Password" required>
                   <label for="password">Password</label>
                 </div>
-                <button class="btn btn-lg btn-primary w-100 mt-3" id="login" type="submit" @click.prevent="signin">
+                <button class="btn btn-lg btn-primary w-100 mt-3" id="login" type="submit">
                   登入
                 </button>
               </form>
