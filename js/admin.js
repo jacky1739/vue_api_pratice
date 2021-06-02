@@ -16,9 +16,13 @@ Vue.createApp({
     methods: {
         getData(){
             axios.get(`${this.base_url}api/${this.api_path}/admin/products`).then((res) => {
-                console.log(res);
-                this.products = res.data.products;
-                console.log(this.products);
+                if(res.data.success){
+                    console.log(res);
+                    this.products = res.data.products;
+                    console.log(this.products);
+                }
+            }).catch((err) => {
+                alert(err.data.message);
             })
         },
         updateProduct(){
