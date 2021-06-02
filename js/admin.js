@@ -4,8 +4,8 @@ let delProductModal = null;
 Vue.createApp({
     data(){
         return {
-            // api_path = 'jacky',
-            // base_url = 'https://vue3-course-api.hexschool.io/',
+            api_path: 'jacky',
+            base_url: 'https://vue3-course-api.hexschool.io/',
             products: [],
             isNew: false,  //是否是新的 
             tempProduct: {
@@ -15,24 +15,18 @@ Vue.createApp({
     },
     methods: {
         getData(){
-            const api_path = 'jacky';
-            const base_url = 'https://vue3-course-api.hexschool.io/';
-
-            axios.get(`${base_url}api/${api_path}/admin/products`).then((res) => {
+            axios.get(`${this.base_url}api/${this.api_path}/admin/products`).then((res) => {
                 console.log(res);
                 this.products = res.data.products;
                 console.log(this.products);
             })
         },
         updateProduct(){
-            const api_path = 'jacky';
-            const base_url = 'https://vue3-course-api.hexschool.io/';
-
-            let url = `${base_url}api/${api_path}/admin/product`;
+            let url = `${this.base_url}api/${this.api_path}/admin/product`;
             let http = 'post';
 
             if(!this.isNew){
-                url = `${base_url}api/${api_path}/admin/product/${this.tempProduct.id}`;
+                url = `${this.base_url}api/${this.api_path}/admin/product/${this.tempProduct.id}`;
                 http = 'put';
             }
 
@@ -76,11 +70,7 @@ Vue.createApp({
             }
         },
         deleteItem(){
-            console.log('click');
-            const api_path = 'jacky';
-            const base_url = 'https://vue3-course-api.hexschool.io/';
-
-            axios.delete(`${base_url}api/${api_path}/admin/product/${this.tempProduct.id}`).then((res) => {
+            axios.delete(`${this.base_url}api/${this.api_path}/admin/product/${this.tempProduct.id}`).then((res) => {
                 console.log(res);
                 if(res.data.success){
                     alert(res.data.message);
